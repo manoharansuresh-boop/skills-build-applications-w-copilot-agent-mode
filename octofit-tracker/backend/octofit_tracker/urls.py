@@ -20,7 +20,11 @@ from rest_framework import routers
 from octofit_tracker import views
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
+import os
 
+# Use CODESPACE_NAME for endpoint base URL
+CODESPACE_NAME = os.environ.get('CODESPACE_NAME')
+BASE_URL = f"https://{CODESPACE_NAME}-8000.app.github.dev" if CODESPACE_NAME else "http://localhost:8000"
 
 router = routers.DefaultRouter()
 router.register(r'users', views.UserViewSet)
